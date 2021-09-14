@@ -8,14 +8,14 @@
     <title>Idea Box</title>
   </head>
   <body>
-    <section>
+    <section class="side-bar">
       <div>
         <h3>IdeaBox</h3>
         <p>Filter Starred Ideas</p>
         <button>Show Starred Ideas</button>
       </div>
     </section>
-    <section>
+    <section class="form-section">
      <div>
        <form>
         <label type="text" for="title">Title</label>
@@ -30,19 +30,21 @@
        </div>
        </div>
     </section>
-    <section>
+    <section class="card-section">
      <!-- idea card goes here -->
-     <div>
-       <button>✨</button>
-       <button>❌</button>
-     </div>
-     <div>
-       <h3>idea title</h3>
-       <p>idea body</p>
-     </div>
-     <div>
-       <button>➕ Comment</button>
-     </div>
+     <article  class="card-article">
+       <div class="card-top-bar">
+         <button>✨</button>
+         <button>❌</button>
+       </div>
+       <div class="card-body">
+         <h3>idea title</h3>
+         <p>idea body</p>
+       </div>
+       <div class="card-bottom-bar">
+         <button>➕ Comment</button>
+       </div>
+      </article>
     </section>
     <script src="Idea.js"></script>
     <script src="main.js"></script>

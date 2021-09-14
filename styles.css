@@ -1,0 +1,29 @@
+.side-bar {
+  background-color: #1f1f3d;
+  color: #eaeaf4;
+}
+
+.form-section {
+  background-color: #a9aad2;
+}
+
+.card-section {
+  background-color: #eaeaf4;
+}
+
+.card-article {
+  border: 1px solid black;
+}
+
+.card-top-bar {
+    background-color: #1f1f3d;
+}
+
+.card-body {
+    background-color: #fff;
+    color: #1f1f3d;
+}
+
+.card-bottom-bar {
+  background-color: #a9aad2;
+}
