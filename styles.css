@@ -52,8 +52,8 @@ body {
 }
 
 .form-save-button{
-  width: 100%;
-  padding: 10px 20px;
+  width: 97%;
+  padding: 15px 20px;
   background-color: #5356a4;
   color: #fff;
   margin: 17px 0;
@@ -74,15 +74,48 @@ body {
   border: 1px solid black;
 }
 
+h3 {
+  margin-top: 0;
+}
+
+.white-star-icon,
+.white-delete-icon,
+.comment-icon {
+  width: 30px;
+}
+
+.white-delete-icon {
+  margin-left: 80%;
+}
+
 .card-top-bar {
-    background-color: #1f1f3d;
+  background-color: #1f1f3d;
+  margin-top: 0;
+  height: 15%;
 }
 
 .card-body {
     background-color: #fff;
     color: #1f1f3d;
+    height: 70%;
 }
 
+
+/* .comment-icon{
+
+} */
+
 .card-bottom-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
   background-color: #a9aad2;
+  color: #fff;
+  height: 15%;
+}
+
+.bottom-bar-comment {
+  /* margin-bottom: 10%; */
+  margin: auto 0 auto 0;
 }
