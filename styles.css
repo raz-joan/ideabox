@@ -88,14 +88,16 @@ h3 {
 .white-star-icon,
 .white-delete-icon,
 .comment-icon {
-  width: 30px;
+  width: 15%;
 }
 
 .white-delete-icon {
-  margin-left: 80%;
+
 }
 
 .card-top-bar {
+  display: flex;
+  justify-content: space-between;
   background-color: #1f1f3d;
   margin-top: 0;
   height: 15%;

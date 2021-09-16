@@ -10,14 +10,12 @@ saveButton.disabled = true;
 
 // eventListeners go below
 saveButton.addEventListener('click', saveToArray);
-titleInput.addEventListener('change', disableEmptyInputs);
-bodyInput.addEventListener('change', disableEmptyInputs);
+titleInput.addEventListener('keydown', disableEmptyInputs);
+bodyInput.addEventListener('keydown', disableEmptyInputs);
 
 //functions and event handler go below
 function disableEmptyInputs() {
-  if (titleInput.value === "" || bodyInput.value === "") {
-    saveButton.disabled = true;
-  } else {
+  if (titleInput.value && bodyInput.value) {
     saveButton.disabled = false;
     saveButton.classList.remove('disable-button');
   }
