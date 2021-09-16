@@ -12,6 +12,11 @@ var ideas = [];
 saveButton.addEventListener('click', verifyInput);
 
 // functions and event handler go below
+function clearInputs() {
+  titleInput.value = "";
+  bodyInput.value = "";
+}
+
 function showIdeaCards() {
   cardContainer.innerHTML = "";
   for (var i = 0; i < ideas.length; i++) {
@@ -36,6 +41,7 @@ function saveToArray(title, body) {
   var ideaCard = new Idea(title, body);
   ideas.push(ideaCard);
   showIdeaCards();
+  clearInputs();
 };
 
 function verifyInput() {
