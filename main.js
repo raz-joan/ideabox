@@ -1,15 +1,11 @@
-
 // querySelectors go below
 var titleInput = document.querySelector('.js-title-input');
 var bodyInput = document.querySelector('.js-body-input');
 var saveButton = document.querySelector('.js-save-button');
 var cardContainer = document.querySelector('.js-card-section');
-// var disableInputs = document.querySelectorAll('.disable-input'); LOOK AT ME
-
 
 // other variables go below
 var ideas = [];
-
 saveButton.disabled = true;
 
 // eventListeners go below
@@ -18,24 +14,27 @@ titleInput.addEventListener('change', disableEmptyInputs);
 bodyInput.addEventListener('change', disableEmptyInputs);
 
 //functions and event handler go below
-function disableEmptyInputs(){
+function disableEmptyInputs() {
   if (titleInput.value === "" || bodyInput.value === "") {
-   saveButton.disabled = true;
+    saveButton.disabled = true;
   } else {
-   saveButton.disabled = false;
-   saveButton.classList.remove('disable-button');
+    saveButton.disabled = false;
+    saveButton.classList.remove('disable-button');
   }
-}
+};
 
 function clearInputs() {
   titleInput.value = "";
   bodyInput.value = "";
-}
+  saveButton.disabled = true;
+  saveButton.classList.add('disable-button');
+};
 
 function showIdeaCards() {
   cardContainer.innerHTML = "";
   for (var i = 0; i < ideas.length; i++) {
-    cardContainer.innerHTML += `<article class="card-article">
+    cardContainer.innerHTML += `
+      <article class="card-article">
         <div class="card-top-bar">
           <img class ="white-star-icon" src="./Assets/star.svg">
           <img class="white-delete-icon" src="./Assets/delete.svg">
@@ -48,7 +47,7 @@ function showIdeaCards() {
           <img class="comment-icon" src="./Assets/comment.svg">
           <p class="bottom-bar-comment">Comment</p>
         </div>
-       </article>`;
+      </article>`;
   }
 };
 
@@ -58,11 +57,3 @@ function saveToArray() {
   showIdeaCards();
   clearInputs();
 };
-
-// function verifyInput() {
-//   if (titleInput.value === "" || bodyInput.value === "") {
-//    window.alert('must fill out form');
-//   } else {
-//     saveToArray(titleInput.value, bodyInput.value);
-//   }
-// };
