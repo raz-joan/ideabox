@@ -57,6 +57,13 @@ body {
   background-color: #5356a4;
   color: #fff;
   margin: 17px 0;
+  cursor: pointer;
+}
+
+.disable-button{
+  background-color: #eaeaf4;
+  color: #1f1f3d;
+  cursor: default;
 }
 
 .card-section {

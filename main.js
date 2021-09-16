@@ -10,20 +10,22 @@ var cardContainer = document.querySelector('.js-card-section');
 // other variables go below
 var ideas = [];
 
-// saveButton.disabled = true;  LOOK AT ME
+saveButton.disabled = true;
 
 // eventListeners go below
-saveButton.addEventListener('click', verifyInput);
-disableInputs.addEventListener('change', disableEmptyInputs);
+saveButton.addEventListener('click', saveToArray);
+titleInput.addEventListener('change', disableEmptyInputs);
+bodyInput.addEventListener('change', disableEmptyInputs);
 
-// functions and event handler go below
-// function disableEmptyInputs(){
-//   if(disableInputs.value === ""){
-//     saveButton.disabled = true;
-//   } else{
-//     saveButton.disabled = false;
-//   }
-// } LOOK AT ME
+//functions and event handler go below
+function disableEmptyInputs(){
+  if (titleInput.value === "" || bodyInput.value === "") {
+   saveButton.disabled = true;
+  } else {
+   saveButton.disabled = false;
+   saveButton.classList.remove('disable-button');
+  }
+}
 
 function clearInputs() {
   titleInput.value = "";
@@ -50,17 +52,17 @@ function showIdeaCards() {
   }
 };
 
-function saveToArray(title, body) {
-  var ideaCard = new Idea(title, body);
+function saveToArray() {
+  var ideaCard = new Idea(titleInput.value, bodyInput.value);
   ideas.push(ideaCard);
   showIdeaCards();
   clearInputs();
 };
 
-function verifyInput() {
-  if (titleInput.value === "" || bodyInput.value === "") {
-   window.alert('must fill out form');
-  } else {
-    saveToArray(titleInput.value, bodyInput.value);
-  }
-};
+// function verifyInput() {
+//   if (titleInput.value === "" || bodyInput.value === "") {
+//    window.alert('must fill out form');
+//   } else {
+//     saveToArray(titleInput.value, bodyInput.value);
+//   }
+// };
