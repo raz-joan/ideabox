@@ -27,54 +27,23 @@ function determineStarOrDelete() {
   }
 };
 
-// look back at showIdeaCards, see if we need to call that somewhere here.
-// function starIdeaCard() {
-//   var ideaId = Number(event.target.parentNode.id);
-//   var foundIdea;
-//   for (var i = 0; i < ideas.length; i++) {
-//     if (ideas[i].id === ideaId) {
-//       foundIdea = ideas[i]
-//     }
-//   }
-//   if(foundIdea.star) {
-//     foundIdea.star = false;
-//     event.target.classList.add('hidden');
-//     var whiteStar = event.target.previousElementSibling;
-//     whiteStar.classList.remove('hidden');
-//   } else {
-//     foundIdea.star = true;
-//     event.target.classList.add('hidden');
-//     var filledInStar = event.target.previousElementSibling;
-//     filledInStar.classList.remove('hidden');
-//   }
-//   // ideas[i].star = true;
-//   event.target.classList.add('hidden');
-//   var filledInStar = event.target.previousElementSibling;
-//   filledInStar.classList.remove('hidden');
-// };
 function starIdeaCard() {
-// update .star to true
   var ideaId = Number(event.target.parentNode.id);
   for (var i = 0; i < ideas.length; i++) {
     if (ideas[i].id === ideaId) {
       ideas[i].star = true;
     }
   }
-// when it's clicked, switch the html to red star
   showIdeaCards();
 };
 
 function unStarIdeaCard() {
-// update .star to false
-// when it's clicked, switch the html back to white star
-// update .star to true
   var ideaId = Number(event.target.parentNode.id);
   for (var i = 0; i < ideas.length; i++) {
     if (ideas[i].id === ideaId) {
       ideas[i].star = false;
     }
   }
-// when it's clicked, switch the html to red star
   showIdeaCards();
 };
 
@@ -86,7 +55,6 @@ function removeIdeaCard() {
     }
   }
   showIdeaCards();
-  console.log(event);
 };
 
 function disableEmptyInputs() {
@@ -96,18 +64,17 @@ function disableEmptyInputs() {
   }
 };
 
-function clearInputs() {
+function resetInputForm() {
   titleInput.value = "";
   bodyInput.value = "";
   saveButton.disabled = true;
   saveButton.classList.add('disable-button');
 };
 
-//Create seperate function to show unstarred cards
 function showIdeaCards() {
   cardContainer.innerHTML = "";
   for (var i = 0; i < ideas.length; i++) {
-    if(ideas[i].star) {
+    if (ideas[i].star) {
       cardContainer.innerHTML += `
         <article class="card-article js-card-article">
           <div class="card-top-bar" id="${ideas[i].id}">
@@ -124,7 +91,6 @@ function showIdeaCards() {
           </div>
         </article>`;
     } else {
-      // hide red star show white star
       cardContainer.innerHTML += `
         <article class="card-article js-card-article">
           <div class="card-top-bar" id="${ideas[i].id}">
@@ -148,8 +114,5 @@ function saveToArray() {
   var ideaCard = new Idea(titleInput.value, bodyInput.value);
   ideas.push(ideaCard);
   showIdeaCards();
-  clearInputs();
+  resetInputForm();
 };
-
-// <img class="white-star-icon hidden js-white-star-icon" id="whiteStar" src="./Assets/star.svg">
-// <img class="star-active-icon hidden js-star-active-icon" id="redStar" src="./Assets/star-active.svg">
