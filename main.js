@@ -1,4 +1,9 @@
 // PSEUDOCODE:
+// [] when card instance is made call saveToStorage method.
+// [] in saveToStorage JSON.stringify(ideaCard/this.title etc/ something else?)
+// [] setItem to local storage
+// [] make sure localstorage is refering to id of each individual card (dynamic)
+// [] 
 
 // querySelectors go below
 var titleInput = document.querySelector('.js-title-input');
@@ -113,6 +118,7 @@ function showIdeaCards() {
 function saveToArray() {
   var ideaCard = new Idea(titleInput.value, bodyInput.value);
   ideas.push(ideaCard);
+  // ideaCard.saveToStorage()
   showIdeaCards();
   resetInputForm();
 };

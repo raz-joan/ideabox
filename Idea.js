@@ -7,7 +7,7 @@ class Idea {
   }
 
   saveToStorage() {
-
+    
   }
 
   deleteFromStorage() {
