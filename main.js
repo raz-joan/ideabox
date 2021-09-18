@@ -43,11 +43,14 @@ function determineStarOrDelete() {
 //     event.target.parentNode.classList.add('hidden');
 // }
 
-function starIdeaCard(pancakes) {
-  // YOU DO NOT NEED A DAMN QUERY STOP ASKING
-  console.log(pancakes)
-  pancakes.classList.add('hidden');
-  pancakes.classList.remove('hidden');
+function starIdeaCard() {
+  var whiteStar = document.getElementById('whiteStar');
+  var filledInStar = document.getElementById('redStar')
+  whiteStar.classList.add('hidden');
+  filledInStar.classList.remove('hidden');
+  // console.log(whiteStar)
+  // whiteStar.classList.add('hidden');
+  // whiteStar.previousSibling.classList.remove('hidden');
 };
 
 function removeIdeaCard(ideaId) {
@@ -81,8 +84,8 @@ function showIdeaCards() {
     cardContainer.innerHTML += `
       <article class="card-article js-card-article">
         <div class="card-top-bar" id="${ideas[i].id}">
-          <img class="white-star-icon js-white-star-icon" src="./Assets/star.svg">
-          <img class="star-active-icon hidden" src="./Assets/star-active.svg">
+        <img class="star-active-icon hidden js-star-active-icon" id="redStar" src="./Assets/star-active.svg">
+          <img class="white-star-icon js-white-star-icon" id="whiteStar" src="./Assets/star.svg">
           <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
         </div>
         <div class="card-body">
