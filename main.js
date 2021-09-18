@@ -1,8 +1,25 @@
+// PSEUDOCODE:
+// [] querySelector cardContainer reused with new function for star direction
+// [] add new eventlistener for above
+// [] new function - to decide which
+//   [] third function to decide which icon function is executed
+
+//FRIDAY GOALS:
+// [] refactor removeIdeaCard function (break for loop and conditional up into 2 functions)
+// [] work on star button
+//   will need white star icon AND filled in star icon
+//   update this.star property in Idea class to be true via instance?
+//   attempt a toggle between white and filled in start
+// [] review iteration 4
+
+
 // querySelectors go below
 var titleInput = document.querySelector('.js-title-input');
 var bodyInput = document.querySelector('.js-body-input');
 var saveButton = document.querySelector('.js-save-button');
 var cardContainer = document.querySelector('.js-card-section');
+
+// var cardArticle = document.querySelector('.js-card-article');
 
 // other variables go below
 var ideas = [];
@@ -10,14 +27,45 @@ saveButton.disabled = true;
 
 // eventListeners go below
 saveButton.addEventListener('click', saveToArray);
-titleInput.addEventListener('change', disableEmptyInputs);
-bodyInput.addEventListener('change', disableEmptyInputs);
+titleInput.addEventListener('keydown', disableEmptyInputs);
+bodyInput.addEventListener('keydown', disableEmptyInputs);
+cardContainer.addEventListener('click', determineStarOrDelete);
 
 //functions and event handler go below
+function determineStarOrDelete() {
+  if (event.target.classList.contains('js-white-star-icon')) {
+    starIdeaCard(event.target);
+  } else if (event.target.classList.contains('js-white-delete-icon')) {
+    removeIdeaCard(event.target);
+  }
+};
+// if (event.target.classList.contains('delete-button')) {
+//     event.target.parentNode.classList.add('hidden');
+// }
+
+function starIdeaCard() {
+  var whiteStar = document.getElementById('whiteStar');
+  var filledInStar = document.getElementById('redStar')
+  whiteStar.classList.add('hidden');
+  filledInStar.classList.remove('hidden');
+  // console.log(whiteStar)
+  // whiteStar.classList.add('hidden');
+  // whiteStar.previousSibling.classList.remove('hidden');
+};
+
+function removeIdeaCard(ideaId) {
+  var ideaId = Number(event.target.parentNode.id);
+  for (var i = 0; i < ideas.length; i++) {
+    if (ideas[i].id === ideaId) {
+      ideas.splice(i, 1);
+    }
+  }
+  showIdeaCards();
+  console.log(event);
+};
+
 function disableEmptyInputs() {
-  if (titleInput.value === "" || bodyInput.value === "") {
-    saveButton.disabled = true;
-  } else {
+  if (titleInput.value && bodyInput.value) {
     saveButton.disabled = false;
     saveButton.classList.remove('disable-button');
   }
@@ -34,10 +82,11 @@ function showIdeaCards() {
   cardContainer.innerHTML = "";
   for (var i = 0; i < ideas.length; i++) {
     cardContainer.innerHTML += `
-      <article class="card-article">
-        <div class="card-top-bar">
-          <img class ="white-star-icon" src="./Assets/star.svg">
-          <img class="white-delete-icon" src="./Assets/delete.svg">
+      <article class="card-article js-card-article">
+        <div class="card-top-bar" id="${ideas[i].id}">
+        <img class="star-active-icon hidden js-star-active-icon" id="redStar" src="./Assets/star-active.svg">
+          <img class="white-star-icon js-white-star-icon" id="whiteStar" src="./Assets/star.svg">
+          <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
         </div>
         <div class="card-body">
           <h3>${ideas[i].title}</h3>
