@@ -1,25 +1,10 @@
 // PSEUDOCODE:
-// [] querySelector cardContainer reused with new function for star direction
-// [] add new eventlistener for above
-// [] new function - to decide which
-//   [] third function to decide which icon function is executed
-
-//FRIDAY GOALS:
-// [] refactor removeIdeaCard function (break for loop and conditional up into 2 functions)
-// [] work on star button
-//   will need white star icon AND filled in star icon
-//   update this.star property in Idea class to be true via instance?
-//   attempt a toggle between white and filled in start
-// [] review iteration 4
-
 
 // querySelectors go below
 var titleInput = document.querySelector('.js-title-input');
 var bodyInput = document.querySelector('.js-body-input');
 var saveButton = document.querySelector('.js-save-button');
 var cardContainer = document.querySelector('.js-card-section');
-
-// var cardArticle = document.querySelector('.js-card-article');
 
 // other variables go below
 var ideas = [];
@@ -33,27 +18,42 @@ cardContainer.addEventListener('click', determineStarOrDelete);
 
 //functions and event handler go below
 function determineStarOrDelete() {
-  if (event.target.classList.contains('js-white-star-icon')) {
-    starIdeaCard(event.target);
+  if (event.target.classList.contains('js-white-star-icon') ||         event.target.classList.contains('js-star-active-icon')) {
+    starIdeaCard();
   } else if (event.target.classList.contains('js-white-delete-icon')) {
-    removeIdeaCard(event.target);
+    removeIdeaCard();
   }
 };
-// if (event.target.classList.contains('delete-button')) {
-//     event.target.parentNode.classList.add('hidden');
-// }
 
+//look back at showIdeaCards, see if we need to call that somewhere here.
 function starIdeaCard() {
-  var whiteStar = document.getElementById('whiteStar');
-  var filledInStar = document.getElementById('redStar')
-  whiteStar.classList.add('hidden');
-  filledInStar.classList.remove('hidden');
-  // console.log(whiteStar)
-  // whiteStar.classList.add('hidden');
-  // whiteStar.previousSibling.classList.remove('hidden');
+  var ideaId = Number(event.target.parentNode.id);
+  var foundIdea;
+  for (var i = 0; i < ideas.length; i++) {
+    if (ideas[i].id === ideaId) {
+      foundIdea = ideas[i]
+    }
+  }
+  if(foundIdea.star) {
+    foundIdea.star = false;
+    event.target.classList.add('hidden');
+    var whiteStar = event.target.previousElementSibling;
+    whiteStar.classList.remove('hidden');
+  } else {
+    foundIdea.star = true;
+    event.target.classList.add('hidden');
+    var filledInStar = event.target.previousElementSibling;
+    filledInStar.classList.remove('hidden');
+    //hide white show red
+  }
+
+  // ideas[i].star = true;
+  // event.target.classList.add('hidden');
+  // var filledInStar = event.target.previousElementSibling;
+  // filledInStar.classList.remove('hidden');
 };
 
-function removeIdeaCard(ideaId) {
+function removeIdeaCard() {
   var ideaId = Number(event.target.parentNode.id);
   for (var i = 0; i < ideas.length; i++) {
     if (ideas[i].id === ideaId) {
@@ -78,13 +78,33 @@ function clearInputs() {
   saveButton.classList.add('disable-button');
 };
 
+//Create seperate function to show unstarred cards
 function showIdeaCards() {
   cardContainer.innerHTML = "";
   for (var i = 0; i < ideas.length; i++) {
+    if(ideas[i].star) {
+      cardContainer.innerHTML += `
+        <article class="card-article js-card-article">
+          <div class="card-top-bar" id="${ideas[i].id}">
+            <img class="white-star-icon hidden js-white-star-icon" id="whiteStar" src="./Assets/star.svg">
+            <img class="star-active-icon js-star-active-icon" id="redStar" src="./Assets/star-active.svg">
+            <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
+          </div>
+          <div class="card-body">
+            <h3>${ideas[i].title}</h3>
+            <p>${ideas[i].body}</p>
+          </div>
+          <div class="card-bottom-bar">
+            <img class="comment-icon" src="./Assets/comment.svg">
+            <p class="bottom-bar-comment">Comment</p>
+          </div>
+        </article>`;
+    } else {
+      // hide red star show white star
     cardContainer.innerHTML += `
       <article class="card-article js-card-article">
         <div class="card-top-bar" id="${ideas[i].id}">
-        <img class="star-active-icon hidden js-star-active-icon" id="redStar" src="./Assets/star-active.svg">
+          <img class="star-active-icon hidden js-star-active-icon" id="redStar" src="./Assets/star-active.svg">
           <img class="white-star-icon js-white-star-icon" id="whiteStar" src="./Assets/star.svg">
           <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
         </div>
@@ -97,6 +117,7 @@ function showIdeaCards() {
           <p class="bottom-bar-comment">Comment</p>
         </div>
       </article>`;
+    }
   }
 };
 
