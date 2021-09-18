@@ -91,6 +91,10 @@ h3 {
   width: 15%;
 }
 
+.hidden {
+  display: none!important;
+}
+
 .white-delete-icon {
 
 }
