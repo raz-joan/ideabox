@@ -7,7 +7,8 @@ class Idea {
   }
 
   saveToStorage() {
-
+    var stringifiedData = JSON.stringify(this);
+    window.localStorage.setItem(this.id, stringifiedData);
   }
 
   deleteFromStorage() {
@@ -16,5 +17,12 @@ class Idea {
 
   updateIdea() {
 
+  }
+
+  getFromStorage() {
+    var retrievedData = window.localStorage.getItem(this.id);
+    // JSON.parse(retrievedData);
+    var data = JSON.parse(retrievedData)
+    ideas.push(data);
   }
 }
