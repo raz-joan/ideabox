@@ -1,3 +1,10 @@
+// Pseudocode for filtering functionality: iteration4
+// [] query search input field
+// [] add eventlistener to above var for 'keyup'?
+// [] function that takes the input and filters through the ideas array for matching included strings
+// [] perhaps add 'hidden' to classList of cards that do not match the filter
+// [] be able to unhide all cards when search is empty/deleted
+
 
 // querySelectors go below
 var titleInput = document.querySelector('.js-title-input');
