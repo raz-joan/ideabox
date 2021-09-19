@@ -3,7 +3,10 @@
 // [] in saveToStorage JSON.stringify(ideaCard/this.title etc/ something else?)
 // [] setItem to local storage
 // [] make sure localstorage is refering to id of each individual card (dynamic)
-// [] 
+// []
+// TO DO:
+// [] Star is not updating
+// []
 
 // querySelectors go below
 var titleInput = document.querySelector('.js-title-input');
@@ -16,12 +19,31 @@ var ideas = [];
 saveButton.disabled = true;
 
 // eventListeners go below
-saveButton.addEventListener('click', saveToArray);
+saveButton.addEventListener('click', createIdeaCard);
 titleInput.addEventListener('keydown', disableEmptyInputs);
 bodyInput.addEventListener('keydown', disableEmptyInputs);
 cardContainer.addEventListener('click', determineStarOrDelete);
+window.addEventListener('load', retrieveArray)
 
 //functions and event handler go below
+function retrieveArray() {
+  var retrievedArray = window.localStorage.getItem('array');
+  var array = JSON.parse(retrievedArray);
+  for (var i = 0; i < array.length; i++) {
+    ideas[i] =  array[i];
+  }
+    showIdeaCards();
+};
+
+function saveArray() {
+  var stringifiedArray = JSON.stringify(ideas);
+  window.localStorage.setItem('array', stringifiedArray);
+
+  // array needs to hold created cards after page load (different function?)
+  // on page load/refresh, we want to retrieve the saved array
+  // call showIdeaCards
+};
+
 function determineStarOrDelete() {
   if (event.target.classList.contains('js-white-star-icon')) {
     starIdeaCard();
@@ -39,6 +61,7 @@ function starIdeaCard() {
       ideas[i].star = true;
     }
   }
+  saveArray();
   showIdeaCards();
 };
 
@@ -49,6 +72,7 @@ function unStarIdeaCard() {
       ideas[i].star = false;
     }
   }
+  saveArray();
   showIdeaCards();
 };
 
@@ -59,6 +83,7 @@ function removeIdeaCard() {
       ideas.splice(i, 1);
     }
   }
+  saveArray();
   showIdeaCards();
 };
 
@@ -115,10 +140,11 @@ function showIdeaCards() {
   }
 };
 
-function saveToArray() {
+function createIdeaCard() {
   var ideaCard = new Idea(titleInput.value, bodyInput.value);
   ideas.push(ideaCard);
-  // ideaCard.saveToStorage()
+  saveArray();
+  ideaCard.saveToStorage();
   showIdeaCards();
   resetInputForm();
 };
