@@ -18,10 +18,4 @@ class Idea {
   updateIdea() {
 
   }
-
-  getFromStorage() {
-    var retrievedData = window.localStorage.getItem(this.id);
-    var data = JSON.parse(retrievedData);
-    ideas.push(data);
-  }
-}
+};

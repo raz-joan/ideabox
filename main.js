@@ -1,8 +1,3 @@
-// PSEUDOCODE:
-// [x] query the show starred ideas button
-// [] add eventListener with onclick with conditional for star = true to render ideas starred ideas
-// [] button says 'show all ideas' instead of 'show starred ideas' *(innerText)
-// [] be able to move back and forth on this... show all cards not just favorites
 
 // querySelectors go below
 var titleInput = document.querySelector('.js-title-input');
