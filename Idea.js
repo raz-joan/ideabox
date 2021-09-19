@@ -12,17 +12,10 @@ class Idea {
   }
 
   deleteFromStorage() {
-
+    window.localStorage.removeItem(this.id);
   }
 
   updateIdea() {
 
   }
-
-  getFromStorage() {
-    var retrievedData = window.localStorage.getItem(this.id);
-    // JSON.parse(retrievedData);
-    var data = JSON.parse(retrievedData)
-    ideas.push(data);
-  }
-}
+};
