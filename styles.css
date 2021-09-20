@@ -96,6 +96,24 @@ p {
   cursor: pointer;
 }
 
+.search-bar {
+  display: flex;
+  border: 1px solid #5356a4;
+}
+
+.search-icon {
+  width: 10%;
+  height: 39px;
+  background-color: #5356a4;
+  padding: 5px;
+}
+
+.search-input {
+  width: 90%;
+  height:35px;
+  padding: 5px;
+}
+
 .disable-button{
   background-color: #eaeaf4;
   color: #1f1f3d;
@@ -144,11 +162,6 @@ p {
     color: #1f1f3d;
     height: 70%;
 }
-
-
-/* .comment-icon{
-
-} */
 
 .card-bottom-bar {
   display: flex;
