@@ -54,7 +54,7 @@ function showSearchedCards() {
             <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
           </div>
           <div class="card-body">
-            <h3>${filteredIdeas[i].title}</h3>
+            <h3 class="idea-title">${filteredIdeas[i].title}</h3>
             <p>${filteredIdeas[i].body}</p>
           </div>
           <div class="card-bottom-bar">
@@ -70,7 +70,7 @@ function showSearchedCards() {
             <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
           </div>
           <div class="card-body">
-            <h3>${filteredIdeas[i].title}</h3>
+            <h3 class="idea-title">${filteredIdeas[i].title}</h3>
             <p>${filteredIdeas[i].body}</p>
           </div>
           <div class="card-bottom-bar">
@@ -92,7 +92,7 @@ function showStarredCards() {
             <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
           </div>
           <div class="card-body">
-            <h3>${starredIdeas[i].title}</h3>
+            <h3 class="idea-title">${starredIdeas[i].title}</h3>
             <p>${starredIdeas[i].body}</p>
           </div>
           <div class="card-bottom-bar">
@@ -126,8 +126,11 @@ function toggleSaveButton() {
 function retrieveArray() {
   var retrievedArray = window.localStorage.getItem('array');
   var array = JSON.parse(retrievedArray);
+  debugger;
   for (var i = 0; i < array.length; i++) {
-    ideas[i] =  array[i];
+    // ideas[i] =  array[i];
+    var idea = array[i]
+    ideas[i] = new Idea(idea.title, idea.body, idea.id, idea.star)
   }
     showIdeaCards();
 };
@@ -206,7 +209,7 @@ function showIdeaCards() {
             <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
           </div>
           <div class="card-body">
-            <h3>${ideas[i].title}</h3>
+            <h3 class="idea-title">${ideas[i].title}</h3>
             <p>${ideas[i].body}</p>
           </div>
           <div class="card-bottom-bar">
@@ -222,7 +225,7 @@ function showIdeaCards() {
             <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
           </div>
           <div class="card-body">
-            <h3>${ideas[i].title}</h3>
+            <h3 class="idea-title">${ideas[i].title}</h3>
             <p>${ideas[i].body}</p>
           </div>
           <div class="card-bottom-bar">

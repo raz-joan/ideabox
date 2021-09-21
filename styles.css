@@ -18,7 +18,7 @@ body {
   color: #eaeaf4;
 }
 
-h3 {
+.side-bar-title {
   margin-left: 5%;
   color: #e9e9f3;
 }
@@ -139,7 +139,7 @@ label {
 .card-article {
   justify-content: space-evenly;
   margin: 20px;
-  height: 40%;
+  height: 60%;
   width: 25%;
   border: 1px solid black;
 }
@@ -150,13 +150,9 @@ label {
   width: 15%;
 }
 
-.hidden {
+/* .hidden {
   display: none!important;
-}
-
-.white-delete-icon {
-
-}
+} */
 
 .card-top-bar {
   display: flex;
@@ -170,6 +166,10 @@ label {
     background-color: #fff;
     color: #1f1f3d;
     height: 70%;
+}
+
+.idea-title {
+  margin: auto;
 }
 
 .card-bottom-bar {
