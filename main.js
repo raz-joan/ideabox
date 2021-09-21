@@ -1,11 +1,3 @@
-// Pseudocode for filtering functionality: iteration4
-// [x] query search input field
-// [x] add eventlistener to above var for 'keyup'?
-// [] function that takes the input and filters through the ideas array for matching included strings
-// [] perhaps add 'hidden' to classList of cards that do not match the filter
-// [] be able to unhide all cards when search is empty/deleted
-
-
 // querySelectors go below
 var titleInput = document.querySelector('.js-title-input');
 var bodyInput = document.querySelector('.js-body-input');
@@ -39,69 +31,8 @@ function searchIdeasArray(){
       filteredIdeas.push(ideas[i]);
     }
   }
-  showSearchedCards();
+  showIdeaCards(filteredIdeas);
   filteredIdeas = [];
-};
-
-function showSearchedCards() {
-  cardContainer.innerHTML = "";
-  for (var i = 0; i < filteredIdeas.length; i++) {
-    if (filteredIdeas[i].star) {
-      cardContainer.innerHTML += `
-        <article class="card-article js-card-article">
-          <div class="card-top-bar" id="${filteredIdeas[i].id}">
-            <img class="star-active-icon js-star-active-icon" id="redStar" src="./Assets/star-active.svg">
-            <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
-          </div>
-          <div class="card-body">
-            <h3 class="idea-title">${filteredIdeas[i].title}</h3>
-            <p class="idea-body">${filteredIdeas[i].body}</p>
-          </div>
-          <div class="card-bottom-bar">
-            <img class="comment-icon" src="./Assets/comment.svg">
-            <p class="bottom-bar-comment">Comment</p>
-          </div>
-        </article>`;
-    } else {
-      cardContainer.innerHTML += `
-        <article class="card-article js-card-article">
-          <div class="card-top-bar" id="${filteredIdeas[i].id}">
-            <img class="white-star-icon js-white-star-icon" id="whiteStar" src="./Assets/star.svg">
-            <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
-          </div>
-          <div class="card-body">
-            <h3 class="idea-title">${filteredIdeas[i].title}</h3>
-            <p class="idea-body">${filteredIdeas[i].body}</p>
-          </div>
-          <div class="card-bottom-bar">
-            <img class="comment-icon" src="./Assets/comment.svg">
-            <p class="bottom-bar-comment">Comment</p>
-          </div>
-        </article>`;
-    }
-  }
-};
-
-function showStarredCards() {
-  cardContainer.innerHTML = "";
-  for (var i = 0; i < starredIdeas.length; i++) {
-      cardContainer.innerHTML += `
-        <article class="card-article js-card-article">
-          <div class="card-top-bar" id="${starredIdeas[i].id}">
-            <img class="star-active-icon js-star-active-icon" id="redStar" src="./Assets/star-active.svg">
-            <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
-          </div>
-          <div class="card-body">
-            <h3 class="idea-title">${starredIdeas[i].title}</h3>
-            <p class="idea-body">${starredIdeas[i].body}</p>
-          </div>
-          <div class="card-bottom-bar">
-            <img class="comment-icon" src="./Assets/comment.svg">
-            <p class="bottom-bar-comment">Comment</p>
-          </div>
-        </article>`
-  }
-  starredIdeas = [];
 };
 
 function saveStarredCards() {
@@ -110,7 +41,8 @@ function saveStarredCards() {
       starredIdeas.push(ideas[i]);
     }
   }
-  showStarredCards();
+  showIdeaCards(starredIdeas);
+  starredIdeas = [];
 };
 
 function toggleSaveButton() {
@@ -118,7 +50,7 @@ function toggleSaveButton() {
     saveStarredCards();
     showStarredButton.innerText = 'Show All Ideas';
   } else {
-    showIdeaCards();
+    showIdeaCards(ideas);
     showStarredButton.innerText = 'Show Starred Ideas';
   }
 };
@@ -126,13 +58,11 @@ function toggleSaveButton() {
 function retrieveArray() {
   var retrievedArray = window.localStorage.getItem('array');
   var array = JSON.parse(retrievedArray);
-  debugger;
   for (var i = 0; i < array.length; i++) {
-    // ideas[i] =  array[i];
-    var idea = array[i]
-    ideas[i] = new Idea(idea.title, idea.body, idea.id, idea.star)
+    var idea = array[i];
+    ideas[i] = new Idea(idea.title, idea.body, idea.id, idea.star);
   }
-    showIdeaCards();
+    showIdeaCards(ideas);
 };
 
 function saveArray() {
@@ -158,7 +88,7 @@ function starIdeaCard() {
     }
   }
   saveArray();
-  showIdeaCards();
+  showIdeaCards(ideas);
 };
 
 function unStarIdeaCard() {
@@ -169,7 +99,7 @@ function unStarIdeaCard() {
     }
   }
   saveArray();
-  showIdeaCards();
+  showIdeaCards(ideas);
 };
 
 function removeIdeaCard() {
@@ -181,7 +111,7 @@ function removeIdeaCard() {
     }
   }
   saveArray();
-  showIdeaCards();
+  showIdeaCards(ideas);
 };
 
 function disableEmptyInputs() {
@@ -198,19 +128,19 @@ function resetInputForm() {
   saveButton.classList.add('disable-button');
 };
 
-function showIdeaCards() {
+function showIdeaCards(arrayName) {
   cardContainer.innerHTML = "";
-  for (var i = 0; i < ideas.length; i++) {
-    if (ideas[i].star) {
+  for (var i = 0; i < arrayName.length; i++) {
+    if (arrayName[i].star) {
       cardContainer.innerHTML += `
         <article class="card-article js-card-article">
-          <div class="card-top-bar" id="${ideas[i].id}">
+          <div class="card-top-bar" id="${arrayName[i].id}">
             <img class="star-active-icon js-star-active-icon" id="redStar" src="./Assets/star-active.svg">
             <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
           </div>
           <div class="card-body">
-            <h3 class="idea-title">${ideas[i].title}</h3>
-            <p class="idea-body">${ideas[i].body}</p>
+            <h3 class="idea-title">${arrayName[i].title}</h3>
+            <p class="idea-body">${arrayName[i].body}</p>
           </div>
           <div class="card-bottom-bar">
             <img class="comment-icon" src="./Assets/comment.svg">
@@ -220,13 +150,13 @@ function showIdeaCards() {
     } else {
       cardContainer.innerHTML += `
         <article class="card-article js-card-article">
-          <div class="card-top-bar" id="${ideas[i].id}">
+          <div class="card-top-bar" id="${arrayName[i].id}">
             <img class="white-star-icon js-white-star-icon" id="whiteStar" src="./Assets/star.svg">
             <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
           </div>
           <div class="card-body">
-            <h3 class="idea-title">${ideas[i].title}</h3>
-            <p class="idea-body">${ideas[i].body}</p>
+            <h3 class="idea-title">${arrayName[i].title}</h3>
+            <p class="idea-body">${arrayName[i].body}</p>
           </div>
           <div class="card-bottom-bar">
             <img class="comment-icon" src="./Assets/comment.svg">
@@ -242,6 +172,6 @@ function createIdeaCard() {
   ideas.push(ideaCard);
   saveArray();
   ideaCard.saveToStorage();
-  showIdeaCards();
+  showIdeaCards(ideas);
   resetInputForm();
 };

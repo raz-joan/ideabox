@@ -8,6 +8,8 @@ body {
   margin: 0;
 }
 
+/* Sidebar Section */
+
 .side-bar {
   display: flex;
   flex-direction: column;
@@ -57,6 +59,8 @@ p {
   width: 75%;
   height: 100vh;
 }
+
+/* Form Section */
 
 .form-section {
   display: flex;
@@ -128,6 +132,8 @@ label {
   color: #1f1f3d;
   cursor: default;
 }
+
+/* Card Section */
 
 .card-section {
   display: flex;
