@@ -54,23 +54,27 @@ p {
 }
 
 .main-body {
-  /* display: block; */
-  /* flex-wrap: wrap; */
   width: 75%;
   height: 100vh;
-}
-
-.div-form-section {
-  width: 50%;
 }
 
 .form-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: space-evenly; */
+  justify-content: space-around;
   background-color: #a9aad2;
-  height: 35%;
+  height: 45vh;
+}
+
+form {
+  width: 50%;
+}
+
+label {
+  font-weight: bold;
+  color: #1f1f3d;
+  font-size: 13px;
 }
 
 .title-input {
@@ -88,17 +92,22 @@ p {
 }
 
 .form-save-button{
-  width: 97%;
-  padding: 15px 20px;
+  width: 50%;
+  padding: 10px 20px;
   background-color: #5356a4;
   color: #fff;
+  font-weight: bold;
+  font-size: 18px;
   margin: 17px 0;
+  border-radius: 3%;
   cursor: pointer;
 }
 
 .search-bar {
   display: flex;
   border: 1px solid #5356a4;
+  margin-bottom: 15px;
+  width: 50%;
 }
 
 .search-icon {
@@ -124,7 +133,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   background-color: #eaeaf4;
-  height: 65%;
+  height: 55vh;
 }
 
 .card-article {
