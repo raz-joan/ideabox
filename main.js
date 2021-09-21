@@ -1,6 +1,6 @@
 // Pseudocode for filtering functionality: iteration4
-// [] query search input field
-// [] add eventlistener to above var for 'keyup'?
+// [x] query search input field
+// [x] add eventlistener to above var for 'keyup'?
 // [] function that takes the input and filters through the ideas array for matching included strings
 // [] perhaps add 'hidden' to classList of cards that do not match the filter
 // [] be able to unhide all cards when search is empty/deleted
@@ -12,10 +12,12 @@ var bodyInput = document.querySelector('.js-body-input');
 var saveButton = document.querySelector('.js-save-button');
 var cardContainer = document.querySelector('.js-card-section');
 var showStarredButton = document.querySelector('.js-show-starred-button');
+var searchInput = document.querySelector('#searchInput');
 
 // other variables go below
 var ideas = [];
 var starredIdeas = [];
+var filteredIdeas = [];
 saveButton.disabled = true;
 
 // eventListeners go below
@@ -25,8 +27,61 @@ bodyInput.addEventListener('keydown', disableEmptyInputs);
 cardContainer.addEventListener('click', determineStarOrDelete);
 window.addEventListener('load', retrieveArray);
 showStarredButton.addEventListener('click', toggleSaveButton);
+searchInput.addEventListener('keyup', searchIdeasArray);
 
 //functions and event handler go below
+function searchIdeasArray(){
+  var searchValue = searchInput.value.toLowerCase();
+  for(var i = 0; i < ideas.length; i++){
+    var titleValue = ideas[i].title.toLowerCase();
+    var bodyValue = ideas[i].body.toLowerCase();
+    if(titleValue.includes(searchValue) || bodyValue.includes(searchValue)){
+      filteredIdeas.push(ideas[i]);
+    }
+  }
+  showSearchedCards();
+  filteredIdeas = [];
+};
+
+function showSearchedCards() {
+  cardContainer.innerHTML = "";
+  for (var i = 0; i < filteredIdeas.length; i++) {
+    if (filteredIdeas[i].star) {
+      cardContainer.innerHTML += `
+        <article class="card-article js-card-article">
+          <div class="card-top-bar" id="${filteredIdeas[i].id}">
+            <img class="star-active-icon js-star-active-icon" id="redStar" src="./Assets/star-active.svg">
+            <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
+          </div>
+          <div class="card-body">
+            <h3>${filteredIdeas[i].title}</h3>
+            <p>${filteredIdeas[i].body}</p>
+          </div>
+          <div class="card-bottom-bar">
+            <img class="comment-icon" src="./Assets/comment.svg">
+            <p class="bottom-bar-comment">Comment</p>
+          </div>
+        </article>`;
+    } else {
+      cardContainer.innerHTML += `
+        <article class="card-article js-card-article">
+          <div class="card-top-bar" id="${filteredIdeas[i].id}">
+            <img class="white-star-icon js-white-star-icon" id="whiteStar" src="./Assets/star.svg">
+            <img class="white-delete-icon js-white-delete-icon" src="./Assets/delete.svg">
+          </div>
+          <div class="card-body">
+            <h3>${filteredIdeas[i].title}</h3>
+            <p>${filteredIdeas[i].body}</p>
+          </div>
+          <div class="card-bottom-bar">
+            <img class="comment-icon" src="./Assets/comment.svg">
+            <p class="bottom-bar-comment">Comment</p>
+          </div>
+        </article>`;
+    }
+  }
+};
+
 function showStarredCards() {
   cardContainer.innerHTML = "";
   for (var i = 0; i < starredIdeas.length; i++) {
