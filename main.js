@@ -55,7 +55,7 @@ function showSearchedCards() {
           </div>
           <div class="card-body">
             <h3 class="idea-title">${filteredIdeas[i].title}</h3>
-            <p>${filteredIdeas[i].body}</p>
+            <p class="idea-body">${filteredIdeas[i].body}</p>
           </div>
           <div class="card-bottom-bar">
             <img class="comment-icon" src="./Assets/comment.svg">
@@ -71,7 +71,7 @@ function showSearchedCards() {
           </div>
           <div class="card-body">
             <h3 class="idea-title">${filteredIdeas[i].title}</h3>
-            <p>${filteredIdeas[i].body}</p>
+            <p class="idea-body">${filteredIdeas[i].body}</p>
           </div>
           <div class="card-bottom-bar">
             <img class="comment-icon" src="./Assets/comment.svg">
@@ -93,7 +93,7 @@ function showStarredCards() {
           </div>
           <div class="card-body">
             <h3 class="idea-title">${starredIdeas[i].title}</h3>
-            <p>${starredIdeas[i].body}</p>
+            <p class="idea-body">${starredIdeas[i].body}</p>
           </div>
           <div class="card-bottom-bar">
             <img class="comment-icon" src="./Assets/comment.svg">
@@ -210,7 +210,7 @@ function showIdeaCards() {
           </div>
           <div class="card-body">
             <h3 class="idea-title">${ideas[i].title}</h3>
-            <p>${ideas[i].body}</p>
+            <p class="idea-body">${ideas[i].body}</p>
           </div>
           <div class="card-bottom-bar">
             <img class="comment-icon" src="./Assets/comment.svg">
@@ -226,7 +226,7 @@ function showIdeaCards() {
           </div>
           <div class="card-body">
             <h3 class="idea-title">${ideas[i].title}</h3>
-            <p>${ideas[i].body}</p>
+            <p class="idea-body">${ideas[i].body}</p>
           </div>
           <div class="card-bottom-bar">
             <img class="comment-icon" src="./Assets/comment.svg">
